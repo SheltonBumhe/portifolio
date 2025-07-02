@@ -28,7 +28,7 @@ const About = () => {
               About Me
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed font-medium animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-              I am a Software Engineer and Data Scientist with a passion for building innovative, high-impact solutions. My expertise spans full-stack development, AI/ML, and data analysis. I thrive on turning complex challenges into elegant, scalable products.
+              I am a Computer Science student and Data Scientist with a passion for building innovative, high-impact solutions. My expertise spans full-stack development, AI/ML, and data analysis. I thrive on turning complex challenges into elegant, scalable products.
             </p>
           </div>
           <div className="space-y-2 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'both' }}>

@@ -1,6 +1,45 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Float, Icosahedron, Stars } from '@react-three/drei';
+import { useState, useEffect } from 'react';
+
+const roles = [
+  'Computer Science Student',
+  'Data Scientist',
+  'Full-Stack Developer',
+  'Problem Solver',
+];
+
+function TypingEffect({ texts, speed = 80, pause = 1200 }) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (subIndex === texts[index].length + 1 && !deleting) {
+      setTimeout(() => setDeleting(true), pause);
+      return;
+    }
+    if (subIndex === 0 && deleting) {
+      setDeleting(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+      return;
+    }
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (deleting ? -1 : 1));
+    }, deleting ? speed / 2 : speed);
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, deleting, texts, speed, pause]);
+
+  return (
+    <span>
+      {texts[index].substring(0, subIndex)}
+      <span className="blinking-cursor">|</span>
+    </span>
+  );
+}
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -12,12 +51,19 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background text-foreground transition-colors duration-300">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -inset-10 opacity-20">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-slate-400 to-slate-600 dark:from-slate-700 dark:to-slate-900 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/3 left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-slate-200 to-slate-400 dark:from-slate-800 dark:to-slate-600 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
+      {/* 3D Animated Background */}
+      <div className="absolute inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ width: '100vw', height: '100vh' }}>
+          <ambientLight intensity={0.7} />
+          <directionalLight position={[5, 5, 5]} intensity={0.7} />
+          <Stars radius={40} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
+          <Float speed={2} rotationIntensity={1.2} floatIntensity={2}>
+            <Icosahedron args={[1.7, 0]}>
+              <meshStandardMaterial color="#6366f1" metalness={0.6} roughness={0.2} />
+            </Icosahedron>
+          </Float>
+          <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1.2} />
+        </Canvas>
       </div>
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
@@ -27,16 +73,12 @@ const Hero = () => {
               Shelton Bumhe
             </span>
           </h1>
-          
-          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-700 dark:text-gray-200 mb-8 font-light">
-            Software Developer | Data Scientist | Problem Solver
+          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-700 dark:text-gray-200 mb-8 font-light h-10">
+            <TypingEffect texts={roles} />
           </p>
-          
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I am a Software Engineer passionate about data science and building innovative solutions. 
-            Currently pursuing a B.S. in Computer Science at the University of Nebraska-Lincoln.
+            I am a Computer Science student passionate about data science and building innovative solutions. Currently pursuing a B.S. in Computer Science at the University of Nebraska-Lincoln.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               onClick={scrollToProjects}
@@ -45,7 +87,6 @@ const Hero = () => {
             >
               See My Work
             </Button>
-            
             <Button 
               variant="outline"
               size="lg"
@@ -56,11 +97,20 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ArrowDown className="w-6 h-6 text-gray-400 dark:text-gray-600" />
         </div>
       </div>
+      <style>{`
+        .blinking-cursor {
+          animation: blink 1s steps(2, start) infinite;
+        }
+        @keyframes blink {
+          to {
+            visibility: hidden;
+          }
+        }
+      `}</style>
     </section>
   );
 };

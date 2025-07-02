@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import 'devicon/devicon.min.css';
 
 const Skills = () => {
   const skillCategories = [
@@ -9,7 +9,7 @@ const Skills = () => {
       title: "Programming Languages",
       skills: ["Python", "Java", "C", "C++", "SQL", "JavaScript", "TypeScript"],
       gradient: "from-blue-500 to-purple-600",
-      icon: "💻"
+      icon: null
     },
     {
       title: "Tools & Libraries",
@@ -31,6 +31,16 @@ const Skills = () => {
     }
   ];
 
+  const languageIcons: Record<string, string> = {
+    Python: 'devicon-python-plain colored',
+    Java: 'devicon-java-plain colored',
+    'C++': 'devicon-cplusplus-plain colored',
+    C: 'devicon-c-plain colored',
+    SQL: 'devicon-sqlite-plain colored',
+    JavaScript: 'devicon-javascript-plain colored',
+    TypeScript: 'devicon-typescript-plain colored',
+  };
+
   return (
     <section id="skills" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +60,6 @@ const Skills = () => {
               <div className={`h-2 bg-gradient-to-r ${category.gradient} rounded-t-lg`}></div>
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 flex items-center gap-3">
-                  <span className="text-2xl">{category.icon}</span>
                   {category.title}
                 </CardTitle>
               </CardHeader>
@@ -60,8 +69,11 @@ const Skills = () => {
                     <Badge 
                       key={skill} 
                       variant="secondary" 
-                      className="bg-white text-gray-700 hover:bg-blue-100 hover:text-blue-800 transition-all duration-200 border border-gray-200 hover:border-blue-300 hover:scale-105"
+                      className="bg-white text-gray-700 hover:bg-blue-100 hover:text-blue-800 transition-all duration-200 border border-gray-200 hover:border-blue-300 hover:scale-105 flex items-center gap-2"
                     >
+                      {category.title === 'Programming Languages' && languageIcons[skill] ? (
+                        <i className={languageIcons[skill]} style={{ fontSize: 20 }}></i>
+                      ) : null}
                       {skill}
                     </Badge>
                   ))}

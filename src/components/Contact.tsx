@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 
 const Contact = () => {
+  const [open, setOpen] = useState(false);
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-blue-700 to-indigo-700 dark:from-blue-300 dark:to-indigo-300 text-white dark:text-slate-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,6 +16,22 @@ const Contact = () => {
           <p className="text-lg text-blue-100 dark:text-blue-900 mt-6 max-w-2xl mx-auto">
             I'm always open to discussing new opportunities, collaborations, or just having a conversation about technology and innovation.
           </p>
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <Button
+            variant="outline"
+            className="border-2 border-white text-white dark:text-slate-900 hover:bg-white hover:text-blue-700 dark:hover:bg-slate-900 dark:hover:text-blue-300 transition-all duration-300"
+            onClick={() => setOpen(true)}
+          >
+            View My Resume
+          </Button>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogContent className="max-w-md mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-4">Resume Available Upon Request</h3>
+              <p className="mb-4 text-gray-700 dark:text-gray-900">For a copy of my resume, please contact me via email.</p>
+              <a href="mailto:shelton.bumhe@email.com" className="text-blue-700 dark:text-blue-500 underline font-semibold">Request Resume</a>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

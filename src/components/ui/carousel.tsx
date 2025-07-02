@@ -152,7 +152,20 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { carouselRef, orientation } = useCarousel()
+  const { carouselRef, orientation, api } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrolling, setScrolling] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!api) return
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap())
+    }
+    api.on('select', onSelect)
+    return () => {
+      api.off('select', onSelect)
+    }
+  }, [api])
 
   return (
     <div ref={carouselRef} className="overflow-hidden">
@@ -164,6 +177,10 @@ const CarouselContent = React.forwardRef<
           className
         )}
         {...props}
+        style={{
+          perspective: '1200px',
+          ...props.style,
+        }}
       />
     </div>
   )
@@ -174,7 +191,38 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { orientation } = useCarousel()
+  const { orientation, api } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [myIndex, setMyIndex] = React.useState<number | null>(null)
+
+  React.useEffect(() => {
+    if (!api) return
+    const idx = api.scrollSnapList().findIndex((snap) => snap === api.selectedScrollSnap())
+    setSelectedIndex(api.selectedScrollSnap())
+    setMyIndex(idx)
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap())
+    }
+    api.on('select', onSelect)
+    return () => {
+      api.off('select', onSelect)
+    }
+  }, [api])
+
+  // 3D transform logic
+  let transform = ''
+  if (myIndex !== null && api) {
+    const diff = myIndex - api.selectedScrollSnap()
+    if (diff === 0) {
+      transform = 'rotateY(0deg) scale(1)'
+    } else if (diff === -1) {
+      transform = 'rotateY(-60deg) scale(0.9)'
+    } else if (diff === 1) {
+      transform = 'rotateY(60deg) scale(0.9)'
+    } else {
+      transform = 'scale(0.8)'
+    }
+  }
 
   return (
     <div
@@ -182,10 +230,15 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
+        "min-w-0 shrink-0 grow-0 basis-full transition-transform duration-700 will-change-transform",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
+      style={{
+        transform,
+        transition: 'transform 0.7s cubic-bezier(0.77,0,0.175,1)',
+        ...props.style,
+      }}
       {...props}
     />
   )
