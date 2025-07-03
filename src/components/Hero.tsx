@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Icosahedron, Stars } from '@react-three/drei';
+import { OrbitControls, Icosahedron, Stars } from '@react-three/drei';
 import { useState, useEffect } from 'react';
 
 const roles = [
@@ -53,15 +53,13 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background text-foreground transition-colors duration-300">
       {/* 3D Animated Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ width: '100vw', height: '100vh' }}>
+        <Canvas camera={{ position: [0, 0, 6], fov: 60 }}>
           <ambientLight intensity={0.7} />
           <directionalLight position={[5, 5, 5]} intensity={0.7} />
           <Stars radius={40} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
-          <Float speed={2} rotationIntensity={1.2} floatIntensity={2}>
-            <Icosahedron args={[1.7, 0]}>
-              <meshStandardMaterial color="#6366f1" metalness={0.6} roughness={0.2} />
-            </Icosahedron>
-          </Float>
+          <Icosahedron args={[1.7, 0]}>
+            <meshStandardMaterial color="#6366f1" metalness={0.6} roughness={0.2} />
+          </Icosahedron>
           <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1.2} />
         </Canvas>
       </div>
