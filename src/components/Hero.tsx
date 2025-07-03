@@ -53,9 +53,9 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background text-foreground transition-colors duration-300">
       {/* 3D Animated Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 6], fov: 60 }}>
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[5, 5, 5]} intensity={0.7} />
+        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)' }}>
+          <ambientLight intensity={0.5} color="#bcd0ee" />
+          <directionalLight position={[5, 5, 5]} intensity={0.6} color="#bcd0ee" />
           <Stars radius={40} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
           <Icosahedron args={[1.7, 0]}>
             <meshStandardMaterial color="#6366f1" metalness={0.6} roughness={0.2} />
