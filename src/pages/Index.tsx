@@ -16,16 +16,16 @@ const Index = () => {
       <div className="max-w-5xl mx-auto py-12">
         <Carousel className="relative shadow-2xl rounded-3xl overflow-hidden" opts={{ loop: true, dragFree: true }}>
           <CarouselContent>
-            <CarouselItem>
+            <CarouselItem className="bg-white/10 border border-white/20">
               <Hero />
             </CarouselItem>
-            <CarouselItem>
+            <CarouselItem className="bg-white/10 border border-white/20">
               <About />
             </CarouselItem>
-            <CarouselItem>
+            <CarouselItem className="bg-white/10 border border-white/20">
               <Projects />
             </CarouselItem>
-            <CarouselItem>
+            <CarouselItem className="bg-white/10 border border-white/20">
               <div className="space-y-12">
                 <Experience />
                 <Skills />
