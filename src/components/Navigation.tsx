@@ -19,8 +19,7 @@ const Navigation = () => {
   useEffect(() => {
     // Set initial mode from localStorage or system preference
     const userPref = localStorage.getItem('theme');
-    const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (userPref === 'dark' || (!userPref && systemPref)) {
+    if (userPref === 'dark') {
       document.documentElement.classList.add('dark');
       setIsDark(true);
     } else {
