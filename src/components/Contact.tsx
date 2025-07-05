@@ -6,7 +6,7 @@ import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 const Contact = () => {
   const [open, setOpen] = useState(false);
   return (
-    <section id="contact" className="py-20 bg-[#0f172a] text-foreground transition-colors duration-300">
+    <section id="contact" className="py-20 bg-white text-black dark:bg-[#0f172a] dark:text-white transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">

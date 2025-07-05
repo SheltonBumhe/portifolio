@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="relative py-24 bg-[#0f172a] text-foreground transition-colors duration-300 overflow-hidden">
+    <section id="about" className="relative py-24 bg-white text-black dark:bg-[#0f172a] dark:text-white transition-colors duration-300 overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
         {/* Photo */}
         <div className="flex-shrink-0 animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
