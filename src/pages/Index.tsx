@@ -17,7 +17,7 @@ const Index = () => {
       {/* Moving Stars Animated Background (dark mode only, full page) */}
       <div className="fixed inset-0 z-0 pointer-events-none hidden dark:block">
         <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ background: 'transparent' }}>
-          <Stars radius={40} depth={50} count={2000} factor={2} saturation={0} fade={true} speed={1} />
+          <Stars radius={40} depth={50} count={2000} factor={2} saturation={0} fade={true} speed={2} />
         </Canvas>
       </div>
       <Navigation />
