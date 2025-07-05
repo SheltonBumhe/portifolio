@@ -11,7 +11,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 animated-gradient-bg">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <Navigation />
       <div className="max-w-5xl mx-auto py-12">
         <Carousel className="relative shadow-2xl rounded-3xl overflow-hidden" opts={{ loop: true, dragFree: true }}>
