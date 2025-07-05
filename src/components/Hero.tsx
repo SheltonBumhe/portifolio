@@ -48,7 +48,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-foreground transition-colors duration-300">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0f172a] text-foreground transition-colors duration-300">
       {/* Removed extra gradient background div for a clean look */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
