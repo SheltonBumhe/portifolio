@@ -16,17 +16,23 @@ const Index = () => {
       <div className="max-w-5xl mx-auto py-12">
         <Carousel className="relative shadow-2xl rounded-3xl overflow-hidden" opts={{ loop: true, dragFree: true }}>
           <CarouselContent>
-            <CarouselItem className="h-[calc(100vh-96px)] flex items-center justify-center">
-              <Hero />
+            <CarouselItem className="h-[calc(100vh-96px)] flex flex-col items-center justify-center">
+              <div className="flex-1 w-full flex flex-col items-center justify-center">
+                <Hero />
+              </div>
             </CarouselItem>
-            <CarouselItem className="h-[calc(100vh-96px)] flex items-center justify-center">
-              <About />
+            <CarouselItem className="h-[calc(100vh-96px)] flex flex-col items-center justify-center">
+              <div className="flex-1 w-full flex flex-col items-center justify-center">
+                <About />
+              </div>
             </CarouselItem>
-            <CarouselItem className="h-[calc(100vh-96px)] flex items-center justify-center">
-              <Projects />
+            <CarouselItem className="h-[calc(100vh-96px)] flex flex-col items-center justify-center">
+              <div className="flex-1 w-full flex flex-col items-center justify-center">
+                <Projects />
+              </div>
             </CarouselItem>
-            <CarouselItem className="h-[calc(100vh-96px)] flex items-center justify-center">
-              <div className="space-y-12">
+            <CarouselItem className="h-[calc(100vh-96px)] flex flex-col items-center justify-center">
+              <div className="space-y-12 flex-1 w-full flex flex-col items-center justify-center">
                 <Experience />
                 <Skills />
                 <Contact />
