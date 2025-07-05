@@ -1,8 +1,6 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Icosahedron, Stars } from '@react-three/drei';
 import { useState, useEffect } from 'react';
 
 const roles = [
@@ -50,38 +48,28 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background text-foreground transition-colors duration-300">
-      {/* 3D Animated Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ background: '#0f172a' }}>
-          <ambientLight intensity={0.5} color="#bcd0ee" />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} color="#bcd0ee" />
-          <Stars radius={40} depth={50} count={2000} factor={2} saturation={0} fade={false} speed={0} />
-          <Icosahedron args={[1.7, 0]}>
-            <meshStandardMaterial color="#6366f1" metalness={0.6} roughness={0.2} />
-          </Icosahedron>
-          <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1.2} />
-        </Canvas>
-      </div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-foreground transition-colors duration-300">
+      {/* Simple gradient background instead of 3D */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-90"></div>
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-700 via-slate-700 to-indigo-700 dark:from-blue-300 dark:via-slate-200 dark:to-indigo-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-300 via-slate-200 to-indigo-300 bg-clip-text text-transparent">
               Shelton Bumhe
             </span>
           </h1>
-          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-700 dark:text-gray-200 mb-8 font-light h-10">
+          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-8 font-light h-10">
             <TypingEffect texts={roles} />
           </p>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
             I am a Computer Science student passionate about data science and building innovative solutions. Currently pursuing a B.S. in Computer Science at the University of Nebraska-Lincoln.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               onClick={scrollToProjects}
               size="lg"
-              className="bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-blue-400 dark:to-indigo-400 hover:from-blue-800 hover:to-indigo-800 dark:hover:from-blue-300 dark:hover:to-indigo-300 text-white dark:text-slate-900 px-8 py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-blue-400 to-indigo-400 hover:from-blue-300 hover:to-indigo-300 text-slate-900 px-8 py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               See My Work
             </Button>
@@ -89,14 +77,14 @@ const Hero = () => {
               variant="outline"
               size="lg"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:bg-blue-700 hover:text-white dark:hover:bg-blue-300 dark:hover:text-slate-900 px-8 py-3 text-lg font-medium transition-all duration-300"
+              className="border-2 border-blue-300 text-blue-300 hover:bg-blue-300 hover:text-slate-900 px-8 py-3 text-lg font-medium transition-all duration-300"
             >
               Get In Touch
             </Button>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-gray-400 dark:text-gray-600" />
+          <ArrowDown className="w-6 h-6 text-gray-400" />
         </div>
       </div>
       <style>{`
