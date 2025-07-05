@@ -178,7 +178,6 @@ const CarouselContent = React.forwardRef<
         )}
         {...props}
         style={{
-          perspective: '1200px',
           ...props.style,
         }}
       />
@@ -209,34 +208,17 @@ const CarouselItem = React.forwardRef<
     }
   }, [api])
 
-  // 3D transform logic
-  let transform = ''
-  if (myIndex !== null && api) {
-    const diff = myIndex - api.selectedScrollSnap()
-    if (diff === 0) {
-      transform = 'rotateY(0deg) scale(1)'
-    } else if (diff === -1) {
-      transform = 'rotateY(-60deg) scale(0.9)'
-    } else if (diff === 1) {
-      transform = 'rotateY(60deg) scale(0.9)'
-    } else {
-      transform = 'scale(0.8)'
-    }
-  }
-
   return (
     <div
       ref={ref}
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full transition-transform duration-700 will-change-transform",
+        "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
       style={{
-        transform,
-        transition: 'transform 0.7s cubic-bezier(0.77,0,0.175,1)',
         ...props.style,
       }}
       {...props}
