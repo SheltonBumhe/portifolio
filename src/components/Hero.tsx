@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Stars } from '@react-three/drei';
 
 const roles = [
   'Computer Science Student',
@@ -49,7 +51,12 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0f172a] text-foreground transition-colors duration-300">
-      {/* Removed extra gradient background div for a clean look */}
+      {/* Moving Stars Animated Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Canvas camera={{ position: [0, 0, 6], fov: 60 }} style={{ background: 'transparent' }}>
+          <Stars radius={40} depth={50} count={2000} factor={2} saturation={0} fade={true} speed={1} />
+        </Canvas>
+      </div>
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
